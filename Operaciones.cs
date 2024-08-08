@@ -21,6 +21,7 @@ namespace Laboratorio_2
         }
         public void MostrarMenuPrincipal()
         {
+            Console.Clear();
             Console.WriteLine("MENÚ PRINCIPAL");
             Console.WriteLine("1. Agregar habitación");
             Console.WriteLine("2. Eliminar habitación");
@@ -36,6 +37,7 @@ namespace Laboratorio_2
                     AgregarHabitacion();
                     break;
                 case 2:
+                    EliminarHabitacion();
                     break;
                 case 3:
                     break;
@@ -51,16 +53,17 @@ namespace Laboratorio_2
         }
         public void AgregarHabitacion()
         {
+            Console.Clear();
             MostrarMenuTipoHabitaciones();
             int tipoHabitacion=int.Parse(Console.ReadLine());
             Console.Write("Ingrese el número de habitación: ");
             int numeroHabitacion=int.Parse(Console.ReadLine());
-            Console.Write("Ingrese el precio por noche de hospedaje: ");
+            Console.Write("Ingrese el precio por noche de hospedaje: Q");
             double precioNoche=double.Parse(Console.ReadLine());
             switch(tipoHabitacion)
             {
                 case 1:
-                    Console.Write("Ingrese la cantidad de camas dentro de la habitación");
+                    Console.Write("Ingrese la cantidad de camas dentro de la habitación: ");
                     int cantidadCamas=int.Parse(Console.ReadLine());
                     ListaHabitaciones.Add(new Simple(numeroHabitacion, precioNoche, true, "", cantidadCamas));
                     Console.WriteLine("Habitación agregada..."); Console.ReadKey();
@@ -68,7 +71,7 @@ namespace Laboratorio_2
                 case 2:
                     while (true)
                     {
-                        Console.WriteLine("¿La habitación doble tiene vista al mar? s/n");
+                        Console.Write("¿La habitación doble tiene vista al mar? s/n: ");
                         string respuesta = Console.ReadLine().ToLower();
                         if (respuesta =="s")
                         {
@@ -93,7 +96,7 @@ namespace Laboratorio_2
                     int cantidadHabitaciones=int.Parse(Console.ReadLine());
                     while(true)
                     {
-                        Console.WriteLine("¿La suite cuenta con Jacuzzi? s/n");
+                        Console.Write("¿La suite cuenta con Jacuzzi? s/n: ");
                         string cuentaJacuzzi=Console.ReadLine().ToLower();
                         if (cuentaJacuzzi =="s")
                         {
@@ -110,15 +113,28 @@ namespace Laboratorio_2
                         else
                         {
                             Console.WriteLine("Debe ingresar s o n...");
+                            Console.ReadKey();
                         }
                     }
-                    break;
-                
+                break;                
             }
         }
         public void EliminarHabitacion()
         {
+            Console.Clear();
             Console.Write("Ingrese el número de la habitación a eliminar: ");
+            int eliminarHabitacion=int.Parse(Console.ReadLine());
+            Habitación eliminar=ListaHabitaciones.Find(c=>c.NumeroHabitacion==eliminarHabitacion);
+            if (eliminar!=null)
+            {
+                ListaHabitaciones.Remove(eliminar);
+                Console.WriteLine($"Se ha eliminado exitosamente los datos de la habitación: {eliminarHabitacion}");
+            }
+            else
+            {
+                Console.WriteLine("No se encuentra registrada esta habitación...");
+            }
+            Console.ReadKey();
         }
     }
 }
