@@ -21,22 +21,20 @@ namespace Laboratorio_2
             Disponibildiad = disponibildiad;
             Cliente = cliente;
         }
-        public string MostrarDisponibildiad()
+        public string MostrarDisponibildiad(bool disponibilidad)
         {
             if (Disponibildiad==true)
             {
-                string verDisponiblidad = "Disponible";
-                return verDisponiblidad;
+                 return "Disponible";
             }
             else
             {
-                string verDisponiblidad = "No disponible";
-                return verDisponiblidad;
+                return "No Disponible"; 
             }
         }
         public void MostrarInformacion()
         {
-            Console.WriteLine($"Número de habitación: {NumeroHabitacion} -- Precio por noche: Q{PrecioNoche} -- Disponibilidad: {MostrarDisponibildiad} ");
+            Console.WriteLine($"Número de habitación: {NumeroHabitacion} -- Precio por noche: Q{PrecioNoche} -- Disponibilidad: {MostrarDisponibildiad(Disponibildiad)} ");
         }
         public bool CambiarDisponibilidad(bool disponibilidad)
         {
@@ -57,7 +55,9 @@ namespace Laboratorio_2
         }
         public void LiberarHabitacion()
         {
-
+            CambiarDisponibilidad(Disponibildiad);
+            Cliente = "";
         }
+
     }
 }

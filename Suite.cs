@@ -16,7 +16,18 @@ namespace Laboratorio_2
             Jacuzzi = jacuzzi;
         }
 
-        public string 
+        public string MostrarJacuzzi(bool Jacuzzi)
+        {
+            if (Jacuzzi)
+            {
+
+                return "Cuenta con jacuzzi";
+            }
+            else
+            {
+                return "No uenta con jacuzzi";
+            }
+        }
         
 
     }
