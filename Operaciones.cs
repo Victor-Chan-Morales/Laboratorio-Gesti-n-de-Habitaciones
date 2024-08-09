@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Laboratorio_2
@@ -186,12 +187,43 @@ namespace Laboratorio_2
         public void HabitacionesDisponibles()
         {
             Console.Clear();
-            Console.WriteLine("HABITACIONES DISPONIBLES");
+            Console.WriteLine("HABITACIONES DISPONIBLES\n");
+            Console.WriteLine("HABITACIONES SIMPLES:");
             foreach (Simple mostrarSimple in ListaHabitaciones)
             {
                 if (mostrarSimple.Disponibildiad==true)
                 {
                     mostrarSimple.MostrarInformacion();
+                    Console.WriteLine("Número de camas: "+mostrarSimple.NumeroCamas);
+                }
+            }
+            Console.WriteLine("\nHABITACIONES DOBLES:");
+            foreach (Doble mostrarDoble in ListaHabitaciones)
+            {
+                if (mostrarDoble.Disponibildiad==true)
+                {
+                    Console.WriteLine("_________________________________________________");
+                    mostrarDoble.MostrarInformacion();
+                    Console.WriteLine(" Vista al mar: " + mostrarDoble.MostrarVista);
+                    Console.WriteLine("_________________________________________________");
+                }
+            }
+            Console.WriteLine("\nHABITACIONES TIPO SUITE:");
+            foreach (Suite mostrarSuite in ListaHabitaciones)
+            {
+                if (mostrarSuite.Disponibildiad == true)
+                {
+                    mostrarSuite.MostrarInformacion();
+                    Console.WriteLine("Número de habitaciones: " + mostrarSuite.CantidadHabitaciones + " Servicio de jacuzzi: " + mostrarSuite.MostrarJacuzzi);
+                }
+            }
+            Console.WriteLine("\nHABITACIONES DELUXE:");
+            foreach (Deluxe mostrarDeluxe in ListaHabitaciones)
+            {
+                if (mostrarDeluxe.Disponibildiad == true)
+                {
+                    mostrarDeluxe.MostrarInformacion();
+                    Console.WriteLine("Servicio de SPA: " + mostrarDeluxe.MostrarSpa+" Servicio de Desayuno: "+mostrarDeluxe.MostrarDesayuno);
                 }
             }
             Console.ReadKey();
