@@ -7,6 +7,7 @@ while(true)
     try
     {
         misOperaciones.MostrarMenuPrincipal();
+        
     }
     catch(FormatException)
     {

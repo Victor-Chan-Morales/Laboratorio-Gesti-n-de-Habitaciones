@@ -8,9 +8,9 @@ namespace Laboratorio_2
 {
     public class Deluxe: Habitación
     {
-        public string Desayuno { get; set; }
+        public bool Desayuno { get; set; }
         public bool AccesoSpa { get; set; }
-        public Deluxe(int numeroHabitacion, double precioNoche, bool disponibildiad, string cliente, string desayuno, bool spa) : base(numeroHabitacion, precioNoche, disponibildiad, cliente)
+        public Deluxe(int numeroHabitacion, double precioNoche, bool disponibildiad, string cliente, string tipoHabitacion, bool desayuno, bool spa) : base(numeroHabitacion, precioNoche, disponibildiad, cliente, tipoHabitacion)
         {
             Desayuno = desayuno;
             AccesoSpa = spa;
@@ -25,6 +25,17 @@ namespace Laboratorio_2
             else
             {
                 return "No cuenta con SPA";
+            }
+        }
+        public string MostrarDesayuno(bool desayuno)
+        {
+            if (desayuno)
+            {
+                return "Incluye desayuno";
+            }
+            else
+            {
+                return "No incluye desayuno";
             }
         }
         

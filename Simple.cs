@@ -9,7 +9,7 @@ namespace Laboratorio_2
     public class Simple : Habitación
     {
         public int NumeroCamas { get; set; }
-        public Simple(int numeroHabitacion, double precioNoche, bool disponibildiad, string cliente, int numeroCamas) : base(numeroHabitacion, precioNoche, disponibildiad, cliente)
+        public Simple(int numeroHabitacion, double precioNoche, bool disponibildiad, string cliente, string tipoHabitacion, int numeroCamas) : base(numeroHabitacion, precioNoche, disponibildiad, cliente, tipoHabitacion)
         {
             NumeroCamas = numeroCamas;
         }

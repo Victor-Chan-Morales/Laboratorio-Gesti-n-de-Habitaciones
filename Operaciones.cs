@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,7 @@ namespace Laboratorio_2
                     EliminarHabitacion();
                     break;
                 case 3:
+                    HabitacionesDisponibles();
                     break;
                 case 4:
                     break;
@@ -65,7 +67,7 @@ namespace Laboratorio_2
                 case 1:
                     Console.Write("Ingrese la cantidad de camas dentro de la habitación: ");
                     int cantidadCamas=int.Parse(Console.ReadLine());
-                    ListaHabitaciones.Add(new Simple(numeroHabitacion, precioNoche, true, "", cantidadCamas));
+                    ListaHabitaciones.Add(new Simple(numeroHabitacion, precioNoche, true, "","Simple", cantidadCamas));
                     Console.WriteLine("Habitación agregada..."); Console.ReadKey();
                     break;
                 case 2:
@@ -75,13 +77,13 @@ namespace Laboratorio_2
                         string respuesta = Console.ReadLine().ToLower();
                         if (respuesta =="s")
                         {
-                            ListaHabitaciones.Add(new Doble(numeroHabitacion,precioNoche,true,"",true));
+                            ListaHabitaciones.Add(new Doble(numeroHabitacion,precioNoche,true,"","Doble", true));
                             Console.WriteLine("Habitación agregada..."); Console.ReadKey();
                             break;
                         }
                         else if (respuesta =="n")
                         {
-                            ListaHabitaciones.Add(new Doble(numeroHabitacion, precioNoche, true, "", false));
+                            ListaHabitaciones.Add(new Doble(numeroHabitacion, precioNoche, true, "", "Doble", false));
                             Console.WriteLine("Habitación agregada..."); Console.ReadKey();
                             break;
                         }
@@ -100,13 +102,13 @@ namespace Laboratorio_2
                         string cuentaJacuzzi=Console.ReadLine().ToLower();
                         if (cuentaJacuzzi =="s")
                         {
-                            ListaHabitaciones.Add(new Suite(numeroHabitacion, precioNoche, true, "", cantidadHabitaciones, true));
+                            ListaHabitaciones.Add(new Suite(numeroHabitacion, precioNoche, true, "", "Suite", cantidadHabitaciones, true));
                             Console.WriteLine("Habitación agregada..."); Console.ReadKey();
                             break;
                         }
                         else if (cuentaJacuzzi=="n")
                         {
-                            ListaHabitaciones.Add(new Suite(numeroHabitacion, precioNoche, true, "", cantidadHabitaciones, false));
+                            ListaHabitaciones.Add(new Suite(numeroHabitacion, precioNoche, true, "", "Suite", cantidadHabitaciones, false));
                             Console.WriteLine("Habitación agregada..."); Console.ReadKey();
                             break;
                         }
@@ -116,7 +118,52 @@ namespace Laboratorio_2
                             Console.ReadKey();
                         }
                     }
-                break;                
+                break;
+                case 4:
+                    bool spa = false;
+                    bool desayunoDis=false;
+                    Console.WriteLine("¿Cuenta con el servicio de SPA? s/n");
+                    string respuestaSpa=Console.ReadLine().ToLower();
+                    while(true)
+                    {
+                        if (respuestaSpa == "s")
+                        {
+                            spa= true;
+                            break;
+                        }
+                        else if (respuestaSpa == "n")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Debe ingresar s o n...");
+                        }    
+                    }
+                    Console.WriteLine("¿Cuenta con el servicio de Desayuno? s/n");
+                    string respuestaDesayuno = Console.ReadLine().ToLower();
+                    while (true)
+                    {
+                        if (respuestaDesayuno == "s")
+                        {
+                            desayunoDis = true;
+                            break ;
+                        }
+                        else if (respuestaDesayuno == "n")
+                        {
+                            break ;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Debe ingresar s o n...");
+                        }
+                    }
+                    ListaHabitaciones.Add(new Deluxe(numeroHabitacion, precioNoche, true, "", "Deluxe", desayunoDis, spa));
+                    Console.WriteLine("Se ha agregado una habitación Deluxe");
+                    break;
+                default:
+                    Console.WriteLine("Esta opción no está disponible");
+                    break;
             }
         }
         public void EliminarHabitacion()
@@ -133,6 +180,19 @@ namespace Laboratorio_2
             else
             {
                 Console.WriteLine("No se encuentra registrada esta habitación...");
+            }
+            Console.ReadKey();
+        }
+        public void HabitacionesDisponibles()
+        {
+            Console.Clear();
+            Console.WriteLine("HABITACIONES DISPONIBLES");
+            foreach (Simple mostrarSimple in ListaHabitaciones)
+            {
+                if (mostrarSimple.Disponibildiad==true)
+                {
+                    mostrarSimple.MostrarInformacion();
+                }
             }
             Console.ReadKey();
         }
