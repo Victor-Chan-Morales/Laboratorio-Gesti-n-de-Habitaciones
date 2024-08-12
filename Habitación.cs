@@ -34,31 +34,10 @@ namespace Laboratorio_2
                 return "No Disponible"; 
             }
         }
-        public void MostrarInformacion()
+        public virtual void MostrarInformacion()
         {
-            Console.WriteLine($"Número de habitación: {NumeroHabitacion} --- Tipo de habitación: {TipoHabitacion} -- Precio por noche: Q{PrecioNoche} -- Disponibilidad: {MostrarDisponibildiad(Disponibildiad)} ");
+            Console.WriteLine($"*Número de habitación: {NumeroHabitacion} --- Tipo de habitación: {TipoHabitacion} -- Precio por noche: Q{PrecioNoche} -- Disponibilidad: {MostrarDisponibildiad(Disponibildiad)} -- Cliente: {Cliente}");
         }
-        public bool CambiarDisponibilidad(bool disponibilidad)
-        {
-            if (Disponibildiad==true)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public string AsignarCliente()
-        {
-            Console.Write("Ingrese el nombre del cliente: ");
-            string nombreCliente=Console.ReadLine().ToUpper();
-            return nombreCliente;
-        }
-        public void LiberarHabitacion()
-        {
-            CambiarDisponibilidad(Disponibildiad);
-            Cliente = "";
-        }
+        
     }
 }

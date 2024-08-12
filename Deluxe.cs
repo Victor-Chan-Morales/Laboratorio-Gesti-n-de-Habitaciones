@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laboratorio_2
 {
-    public class Deluxe: Habitación
+    public class Deluxe : Habitación
     {
         public bool Desayuno { get; set; }
         public bool AccesoSpa { get; set; }
@@ -16,9 +16,9 @@ namespace Laboratorio_2
             AccesoSpa = spa;
         }
 
-        public string MostrarSpa(bool accesoSpa)
+        public string MostrarSpa(bool spa)
         {
-            if (accesoSpa)
+            if (AccesoSpa==true)
             {
                 return "Cuenta con SPA";
             }
@@ -29,7 +29,7 @@ namespace Laboratorio_2
         }
         public string MostrarDesayuno(bool desayuno)
         {
-            if (desayuno)
+            if (Desayuno==true)
             {
                 return "Incluye desayuno";
             }
@@ -38,7 +38,11 @@ namespace Laboratorio_2
                 return "No incluye desayuno";
             }
         }
-        
+        public override void MostrarInformacion()
+        {
+            base.MostrarInformacion();
+            Console.WriteLine($"Servicios con los que cuenta la habitación:\n*SPA: {MostrarSpa(AccesoSpa)}\n*Desayuno: {MostrarDesayuno(Desayuno)}");
+        }
 
     }
 }

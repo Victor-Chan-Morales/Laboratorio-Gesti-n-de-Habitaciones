@@ -24,7 +24,12 @@ namespace Laboratorio_2
             {
                 return "No cuenta con vista al mar";
             }
-        }  
+        }
 
+        public override void MostrarInformacion()
+        {
+            base.MostrarInformacion();
+            Console.WriteLine($"Vista al mar: {MostrarVista(VistaMar)}");
+        }
     }
 }

@@ -14,7 +14,12 @@ namespace Laboratorio_2
             NumeroCamas = numeroCamas;
         }
 
-        
+        public override void MostrarInformacion()
+        {
+            base.MostrarInformacion();
+            Console.WriteLine($"EL número de cámas con el que cuenta la habitacíón es de: {NumeroCamas}");
+        }
+
 
     }
 }

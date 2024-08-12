@@ -45,8 +45,10 @@ namespace Laboratorio_2
                     HabitacionesDisponibles();
                     break;
                 case 4:
+                    OcuparHabitacion();
                     break;
                 case 5:
+                    LiberarHabitacion();
                     break;
                 default:
                     Console.WriteLine("Esta opción no está disponible, ingrese una opción válida...");
@@ -188,45 +190,52 @@ namespace Laboratorio_2
         {
             Console.Clear();
             Console.WriteLine("HABITACIONES DISPONIBLES\n");
-            Console.WriteLine("HABITACIONES SIMPLES:");
-            foreach (Simple mostrarSimple in ListaHabitaciones)
+            foreach(Habitación habitacion in ListaHabitaciones)
             {
-                if (mostrarSimple.Disponibildiad==true)
-                {
-                    mostrarSimple.MostrarInformacion();
-                    Console.WriteLine("Número de camas: "+mostrarSimple.NumeroCamas);
-                }
-            }
-            Console.WriteLine("\nHABITACIONES DOBLES:");
-            foreach (Doble mostrarDoble in ListaHabitaciones)
-            {
-                if (mostrarDoble.Disponibildiad==true)
-                {
-                    Console.WriteLine("_________________________________________________");
-                    mostrarDoble.MostrarInformacion();
-                    Console.WriteLine(" Vista al mar: " + mostrarDoble.MostrarVista);
-                    Console.WriteLine("_________________________________________________");
-                }
-            }
-            Console.WriteLine("\nHABITACIONES TIPO SUITE:");
-            foreach (Suite mostrarSuite in ListaHabitaciones)
-            {
-                if (mostrarSuite.Disponibildiad == true)
-                {
-                    mostrarSuite.MostrarInformacion();
-                    Console.WriteLine("Número de habitaciones: " + mostrarSuite.CantidadHabitaciones + " Servicio de jacuzzi: " + mostrarSuite.MostrarJacuzzi);
-                }
-            }
-            Console.WriteLine("\nHABITACIONES DELUXE:");
-            foreach (Deluxe mostrarDeluxe in ListaHabitaciones)
-            {
-                if (mostrarDeluxe.Disponibildiad == true)
-                {
-                    mostrarDeluxe.MostrarInformacion();
-                    Console.WriteLine("Servicio de SPA: " + mostrarDeluxe.MostrarSpa+" Servicio de Desayuno: "+mostrarDeluxe.MostrarDesayuno);
-                }
+                habitacion.MostrarInformacion();
             }
             Console.ReadKey();
+        }
+        public void OcuparHabitacion()
+        {
+            Console.Clear();
+            Console.WriteLine("REGISTRO DE HABITACIÓN");
+            Console.WriteLine("Ingrese el número de habitación: ");
+            int numeroBuscar=int.Parse(Console.ReadLine());
+            Habitación comprobarExistencia=ListaHabitaciones.Find(c=>c.NumeroHabitacion==numeroBuscar);
+            if (comprobarExistencia!=null)
+            {
+                comprobarExistencia.Disponibildiad = false;
+                Console.WriteLine("Ingrese el nombre del cliente: ");
+                comprobarExistencia.Cliente = Console.ReadLine().ToUpper();
+                Console.WriteLine("Se ha registrado el cliente a la habitación: "+numeroBuscar);
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("No se ha encontrado este número de habitación....");
+                Console.ReadKey(); 
+            }
+        }
+        public void LiberarHabitacion()
+        {
+            Console.Clear();
+            Console.WriteLine("REGISTRO DE HABITACIÓN");
+            Console.WriteLine("Ingrese el número de habitación: ");
+            int numeroBuscar = int.Parse(Console.ReadLine());
+            Habitación comprobarExistencia = ListaHabitaciones.Find(c => c.NumeroHabitacion == numeroBuscar);
+            if (comprobarExistencia != null)
+            {
+                comprobarExistencia.Disponibildiad = true;
+                comprobarExistencia.Cliente = "";
+                Console.WriteLine("Se ha liberado la habitación: " + numeroBuscar);
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("No se ha encontrado este número de habitación....");
+                Console.ReadKey();
+            }
         }
     }
 }
