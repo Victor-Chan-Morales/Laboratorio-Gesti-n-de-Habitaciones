@@ -30,7 +30,7 @@ namespace Laboratorio_2
             Console.WriteLine("3. Mostrar habitaciones disponibles");
             Console.WriteLine("4. Reservar/ocupar habitación");
             Console.WriteLine("5. Liberar habitación");
-            Console.WriteLine("0. Salir del programa");
+            Console.WriteLine("6. Salir del programa");
             Console.Write("Seleccione una opción: ");
             int menuPrincipal=int.Parse(Console.ReadLine());
             switch(menuPrincipal)
@@ -49,6 +49,9 @@ namespace Laboratorio_2
                     break;
                 case 5:
                     LiberarHabitacion();
+                    break;
+                case 6:
+                    Salir();
                     break;
                 default:
                     Console.WriteLine("Esta opción no está disponible, ingrese una opción válida...");
@@ -236,6 +239,10 @@ namespace Laboratorio_2
                 Console.WriteLine("No se ha encontrado este número de habitación....");
                 Console.ReadKey();
             }
+        }
+        public void Salir()
+        {
+            Environment.Exit(6);
         }
     }
 }
